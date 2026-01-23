@@ -1,0 +1,15 @@
+/.classpath
+/.gradle/
+/.project
+/.settings/
+/README.md
+/build.gradle
+/build/
+/gradle/
+/gradlew
+/gradlew.bat
+/settings.gradle
+/src/
+/default/
+/main/
+/test/
