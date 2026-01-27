@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 @DisplayName("Example01クラスのテスト")
-public class ExampleTest01 {
+public class Example01Test {
 
 	@Nested
 	@DisplayName("integerToString(Integer) のテスト")

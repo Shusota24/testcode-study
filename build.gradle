@@ -28,8 +28,7 @@ dependencies {
     testImplementation  libs.junit.jupiter
     implementation      libs.guava
 
-    testRuntimeOnly libs.junit.jupiter
-
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-math3
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api libs.commons.math3
 
