@@ -1,4 +1,4 @@
-package com.mykomon.example.domain;
+package com.mykomon.example.infrastructure;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
@@ -11,7 +11,9 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-public class UserServiceTest {
+import com.mykomon.example.domain.User;
+
+public class UserRepositoryImplTest {
 
 	@Nested
 	@DisplayName("getUserById(Long)のテスト")
@@ -25,14 +27,15 @@ public class UserServiceTest {
 							.id(1L)
 							.name("Taro")
 							.age(20)
+							.parentFilterFlag(false)
 							.build();
 
 			// userRepository.findById(id)の振る舞いをモックで定義
-			UserRepository userRepository = Mockito.mock(UserRepository.class);
-			when(userRepository.findById(1L)).thenReturn(Optional.of(expectedUser));
+			UserRepositoryImpl userRepositoryImpl = Mockito.mock(UserRepositoryImpl.class);
+			when(userRepositoryImpl.getUserById(1L)).thenReturn(Optional.of(expectedUser));
 
 			// 実行
-			Optional<User> result = new UserService(userRepository).getUserById(1L);
+			Optional<User> result = userRepositoryImpl.getUserById(1L);
 
 			// 確認
 			assertTrue(result.isPresent());

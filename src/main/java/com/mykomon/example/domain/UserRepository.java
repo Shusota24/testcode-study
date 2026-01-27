@@ -9,11 +9,11 @@ import java.util.Optional;
 public interface UserRepository {
 
 	// 参照
-	Optional<User> findById(Long id) throws SQLException;
+	public Optional<User> getUserById(Long id) throws SQLException;
 
 	// 登録
-	void save(User user);
+	public void createUser(User user);
 
 	// 削除
-	void delete(Long id);
+	public void deleteUser(Long id);
 }

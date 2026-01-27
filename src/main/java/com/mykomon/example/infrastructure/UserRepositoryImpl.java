@@ -1,59 +1,55 @@
 package com.mykomon.example.infrastructure;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
+import com.mykomon.example.application.UserMapper;
 import com.mykomon.example.domain.User;
-import com.mykomon.example.domain.UserRepository;
 
 import lombok.NonNull;
 
-public class UserRepositoryImpl implements UserRepository {
+/**
+ * ユーザサービス
+ */
+public class UserRepositoryImpl {
 
-	/** DBコネクション */
-	@NonNull
-	Connection con;
+	private final UserDao userDao;
 
-	@Override
-	public Optional<User> findById(Long id) throws SQLException {
+	public UserRepositoryImpl(UserDao userDao) {
+		this.userDao = userDao;
+	}
 
-		// SQL文生成
-		final StringBuilder sbSql = new StringBuilder();
-		sbSql.append("SELECT ");
-		sbSql.append("	id ");
-		sbSql.append("	, name ");
-		sbSql.append("	, age ");
-		sbSql.append("	, parent_filter_flag ");
+	/**
+	 * IDでユーザを取得する。
+	 *
+	 * @param id ユーザID（null不可）
+	 * @return ユーザが存在する場合は Optional.of(User)、存在しない場合は Optional.empty()
+	 */
+	public Optional<User> getUserById(@NonNull final Long id) throws SQLException {
+		UserDto userDto = userDao.findById(id);
 
-		sbSql.append("FROM ");
-		sbSql.append("	`test`.`User` ");
-
-		try (final PreparedStatement psmt = this.con.prepareStatement(sbSql.toString())) {
-			final ResultSet rs = psmt.executeQuery();
-			while (rs.next()) {
-				User user =  User.builder()
-						.id(rs.getLong("id"))
-						.name(rs.getString("name"))
-						.age(rs.getInt("age"))
-						.parentFilterFlag(rs.getBoolean("parent_filter_flag"))
-						.build();
-
-				return Optional.of(user);
-			}
+		if (userDto == null) {
 			return Optional.empty();
 		}
+
+		User user = UserMapper.convertToEntity(userDto);
+
+		return Optional.of(user);
 	}
 
-	@Override
-	public void save(User user) {
-
+	/**
+	 * ユーザを作成する。
+	 *
+	 * @param user ユーザ（null不可）
+	 */
+	public void createUser(User user) {
 	}
 
-	// 削除
-	public void delete(Long id) {
-
+	/**
+	 * ユーザを削除する。
+	 *
+	 * @param id ユーザID（null不可）
+	 */
+	public void deleteUser(Long id) {
 	}
 }
