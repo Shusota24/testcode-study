@@ -30,4 +30,13 @@ public class User {
 	public boolean isAdult() {
 		return age >= 18;
 	}
+
+	/**
+	 * ユーザのステータスを取得する。
+	 *
+	 * 保護者フィルターがtrue:"filtered"、false:"normal"
+	 */
+	public String getAccessType() {
+		return parentFilterFlag ? "filtered" : "normal";
+	}
 }
