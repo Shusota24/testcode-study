@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-public class ExampleTestCase {
+public class Example01TestCase {
 
 	@Nested
 	@DisplayName("integerToString(Integer) のテスト")

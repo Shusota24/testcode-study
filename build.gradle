@@ -27,6 +27,8 @@ dependencies {
     // 標準で提供されるライブラリ
     testImplementation  libs.junit.jupiter
     implementation      libs.guava
+    
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     // https://mvnrepository.com/artifact/org.apache.commons/commons-math3
     // This dependency is exported to consumers, that is to say found on their compile classpath.

@@ -31,26 +31,4 @@ public class Example01 {
 			throw new IllegalArgumentException("数値ではありません。");
 		}
 	}
-
-	/**
-	 * Stringの入力値を奇数か偶数か判定します。
-	 *
-	 * @param param 文字列
-	 * @return String
-	 */
-	public String returnOddOrEven(String param) {
-
-		try {
-			int i = Integer.parseInt(param);
-
-			if (i % 2 == 0) {
-				return "even";
-			} else {
-				return "odd";
-			}
-
-		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("数値ではありません。");
-		}
-	}
 }
